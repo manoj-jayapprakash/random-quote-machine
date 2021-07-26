@@ -1,3 +1,22 @@
+:root {
+  --bg-color: hsl(255, 29%, 67%);
+  --bg-hover-color: hsl(255, 29%, 70%);
+  --white: hsl(0, 0%, 100%);
+}
+
 body {
   margin: 0;
+  background-color: var(--bg-color);
+  color: var(--bg-color);
+}
+
+.box-items {
+  background-color: var(--bg-color);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.box-items:hover {
+  background-color: var(--bg-hover-color);
 }

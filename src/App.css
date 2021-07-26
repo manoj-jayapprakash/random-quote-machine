@@ -1,0 +1,36 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+#quote-box {
+  align-items: center;
+  margin: auto;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: var(--white);
+  max-width: 500px;
+}
+
+#text {
+  text-align: center;
+  font-size: 2rem;
+}
+
+#author {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+#new-quote {
+  border: none;
+  font-size: 1rem;
+  padding: 10px 1rem;
+}
+
+.actions {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
