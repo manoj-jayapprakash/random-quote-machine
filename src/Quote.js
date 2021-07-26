@@ -1,18 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const Quote = (props) => {
   const [quotes, setQuotes] = useState([{}]);
 
-  const fetchAPI = async () => {
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  };
+
+  const setStyle = useCallback(() => {
+    const hue = getRandomInt(0, 360);
+    const saturation = getRandomInt(0, 100);
+    const lightness = getRandomInt(0, 80);
+    document.body.style.setProperty(
+      '--bg-color',
+      `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    );
+    document.body.style.setProperty(
+      '--bg-hover-color',
+      `hsl(${hue}, ${saturation}%, ${lightness + 10}%)`
+    );
+  }, []);
+
+  const fetchAPI = useCallback(async () => {
     const res = await fetch('https://api.quotable.io/random');
     const data = await res.json();
-
+    setStyle();
     setQuotes(data);
-  };
+  }, [setStyle]);
 
   useEffect(() => {
     fetchAPI();
-  }, []);
+  }, [fetchAPI]);
 
   const newQuoteHandler = () => {
     fetchAPI();
@@ -22,9 +42,11 @@ export const Quote = (props) => {
     <section id="quote-box">
       <h1 id="text">
         <i className="fas fa-quote-left"></i>
-        {` ${quotes.content}`}
+        {` ${quotes.content ? quotes.content : 'Loading'}`}
       </h1>
-      <p id="author">- {quotes.author}</p>
+      <p id="author">
+        {` ${quotes.author ? `- ${quotes.author}` : 'Loading'}`}
+      </p>
       <div className="actions">
         <a
           href="twitter.com/intent/tweet"
