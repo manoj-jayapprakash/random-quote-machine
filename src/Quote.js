@@ -40,10 +40,10 @@ export const Quote = (props) => {
 
   return (
     <section id="quote-box">
-      <h1 id="text">
+      <blockquote id="text">
         <i className="fas fa-quote-left"></i>
         {` ${quotes.content ? quotes.content : 'Loading'}`}
-      </h1>
+      </blockquote>
       <p id="author">
         {` ${quotes.author ? `- ${quotes.author}` : 'Loading'}`}
       </p>
